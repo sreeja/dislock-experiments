@@ -1,0 +1,9 @@
+[submodule "dislocksim"]
+	path = dislocksim
+	url = git@github.com:sreeja/dislocksim.git
+[submodule "dislockgen"]
+	path = dislockgen
+	url = git@github.com:sreeja/dislockgen.git
+[submodule "YCSB"]
+	path = YCSB
+	url = git@github.com:sreeja/YCSB.git

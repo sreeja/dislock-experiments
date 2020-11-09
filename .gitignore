@@ -1,0 +1,5 @@
+results/small*/*
+results/*
+results/combined/*
+
+.DS_Store

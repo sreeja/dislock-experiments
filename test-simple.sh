@@ -13,7 +13,7 @@ do
         do
           for replica in z
           do
-            cd cc-experiment
+            cd dislocksim
             export APP=$app
             export GRANULARITY=$granularity
             export LOCKTYPE=$mode

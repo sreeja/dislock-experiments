@@ -5,7 +5,7 @@ for app in auction2
 do
   for granularity in 1
   do
-    for mode in $(seq 27) 
+    for mode in {1..27} 
     do
       for placement in cent clust dist
       do
@@ -15,7 +15,7 @@ do
         do
           for replica in x
           do
-            cd cc-experiment
+            cd dislocksim
             export APP=$app
             export GRANULARITY=$granularity
             export LOCKTYPE=$mode
@@ -47,7 +47,7 @@ do
   done
   for granularity in 2
   do
-    for mode in $(seq 9) 
+    for mode in {1..9} 
     do
       for placement in cent clust dist
       do
@@ -57,7 +57,7 @@ do
         do
           for replica in x
           do
-            cd cc-experiment
+            cd dislocksim
             export APP=$app
             export GRANULARITY=$granularity
             export LOCKTYPE=$mode

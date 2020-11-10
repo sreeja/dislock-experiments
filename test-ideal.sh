@@ -4,18 +4,15 @@ for app in auction1
 do
   for granularity in 1
   do
-    for mode in $(seq 9) 
+    for mode in {1..9} 
     do
       for placement in cent clust dist
       do
-		    cd YCSB
-        for f in $(find wlogs); do > $f; done
-        cd ..
         for op in a
         do
           for replica in x
           do
-            cd cc-experiment
+            cd dislocksim
             export APP=$app
             export GRANULARITY=$granularity
             export LOCKTYPE=$mode
@@ -47,18 +44,15 @@ do
   done
   for granularity in 2
   do
-    for mode in $(seq 3) 
+    for mode in {1..3} 
     do
       for placement in cent clust dist
       do
-		    cd YCSB
-        for f in $(find wlogs); do > $f; done
-        cd ..
         for op in a
         do
           for replica in x
           do
-            cd cc-experiment
+            cd dislocksim
             export APP=$app
             export GRANULARITY=$granularity
             export LOCKTYPE=$mode
@@ -94,18 +88,15 @@ for app in auction2
 do
   for granularity in 1
   do
-    for mode in $(seq 27) 
+    for mode in {1..27} 
     do
       for placement in cent clust dist
       do
-		    cd YCSB
-        for f in $(find wlogs); do > $f; done
-        cd ..
         for op in a
         do
           for replica in x
           do
-            cd cc-experiment
+            cd dislocksim
             export APP=$app
             export GRANULARITY=$granularity
             export LOCKTYPE=$mode
@@ -137,18 +128,15 @@ do
   done
   for granularity in 2
   do
-    for mode in $(seq 9) 
+    for mode in {1..9} 
     do
       for placement in cent clust dist
       do
-		    cd YCSB
-        for f in $(find wlogs); do > $f; done
-        cd ..
         for op in a
         do
           for replica in x
           do
-            cd cc-experiment
+            cd dislocksim
             export APP=$app
             export GRANULARITY=$granularity
             export LOCKTYPE=$mode
@@ -184,18 +172,15 @@ for app in auction3
 do
   for granularity in 1
   do
-    for mode in $(seq 81) 
+    for mode in {1..81} 
     do
       for placement in cent clust dist
       do
-		    cd YCSB
-        for f in $(find wlogs); do > $f; done
-        cd ..
         for op in a
         do
           for replica in x
           do
-            cd cc-experiment
+            cd dislocksim
             export APP=$app
             export GRANULARITY=$granularity
             export LOCKTYPE=$mode
@@ -227,18 +212,15 @@ do
   done
   for granularity in 2
   do
-    for mode in $(seq 54) 
+    for mode in {1..54} 
     do
       for placement in cent clust dist
       do
-		    cd YCSB
-        for f in $(find wlogs); do > $f; done
-        cd ..
         for op in a
         do
           for replica in x
           do
-            cd cc-experiment
+            cd dislocksim
             export APP=$app
             export GRANULARITY=$granularity
             export LOCKTYPE=$mode
@@ -270,18 +252,15 @@ do
   done
   for granularity in 3
   do
-    for mode in $(seq 27) 
+    for mode in {1..27} 
     do
       for placement in cent clust dist
       do
-		    cd YCSB
-        for f in $(find wlogs); do > $f; done
-        cd ..
         for op in a
         do
           for replica in x
           do
-            cd cc-experiment
+            cd dislocksim
             export APP=$app
             export GRANULARITY=$granularity
             export LOCKTYPE=$mode
@@ -313,18 +292,15 @@ do
   done
   for granularity in 4
   do
-    for mode in $(seq 18) 
+    for mode in {1..18} 
     do
       for placement in cent clust dist
       do
-		    cd YCSB
-        for f in $(find wlogs); do > $f; done
-        cd ..
         for op in a
         do
           for replica in x
           do
-            cd cc-experiment
+            cd dislocksim
             export APP=$app
             export GRANULARITY=$granularity
             export LOCKTYPE=$mode
@@ -356,18 +332,15 @@ do
   done
   for granularity in 5
   do
-    for mode in $(seq 27) 
+    for mode in {1..27} 
     do
       for placement in cent clust dist
       do
-		    cd YCSB
-        for f in $(find wlogs); do > $f; done
-        cd ..
         for op in a
         do
           for replica in x
           do
-            cd cc-experiment
+            cd dislocksim
             export APP=$app
             export GRANULARITY=$granularity
             export LOCKTYPE=$mode
@@ -399,18 +372,15 @@ do
   done
   for granularity in 6
   do
-    for mode in $(seq 18) 
+    for mode in {1..18} 
     do
       for placement in cent clust dist
       do
-		    cd YCSB
-        for f in $(find wlogs); do > $f; done
-        cd ..
         for op in a
         do
           for replica in x
           do
-            cd cc-experiment
+            cd dislocksim
             export APP=$app
             export GRANULARITY=$granularity
             export LOCKTYPE=$mode
@@ -442,18 +412,15 @@ do
   done
   for granularity in 7
   do
-    for mode in $(seq 24) 
+    for mode in {1..24} 
     do
       for placement in cent clust dist
       do
-		    cd YCSB
-        for f in $(find wlogs); do > $f; done
-        cd ..
         for op in a
         do
           for replica in x
           do
-            cd cc-experiment
+            cd dislocksim
             export APP=$app
             export GRANULARITY=$granularity
             export LOCKTYPE=$mode
@@ -485,18 +452,15 @@ do
   done
   for granularity in 8
   do
-    for mode in $(seq 16) 
+    for mode in {1..16} 
     do
       for placement in cent clust dist
       do
-		    cd YCSB
-        for f in $(find wlogs); do > $f; done
-        cd ..
         for op in a
         do
           for replica in x
           do
-            cd cc-experiment
+            cd dislocksim
             export APP=$app
             export GRANULARITY=$granularity
             export LOCKTYPE=$mode

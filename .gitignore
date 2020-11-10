@@ -3,3 +3,8 @@ results/*
 results/combined/*
 
 .DS_Store
+
+
+lockenv/*
+
+.vscode/*

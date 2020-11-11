@@ -16,9 +16,9 @@ modes = {'auction1': {1: range(1, 10), 2: range(1, 4)},
 placements = ['cent', 'clust', 'dist']
 
 # applications = ['auction2']
-# workloads = ['workloadby', 'workloadbz']
-# granularities = {'auction2': range(1, 2)}
-# modes = {'auction2': {1: range(1, 27)}}
+# workloads = ['workloadax', 'workloaday', 'workloadaz']
+# granularities = {'auction2': range(3, 4)}
+# modes = {'auction2': {3: range(1, 2)}}
 # placements = ['cent', 'clust', 'dist']
 
 
@@ -53,7 +53,7 @@ def get_latencies(app, workload, gran, mode, placement):
                         ops = int(parts[2])
                         number_of_ops_rep += ops
                         # print('operations', line)
-                    elif parts[1] == 'AverageLatency(us)':
+                    elif 'FAILED' not in parts[0] and parts[1] == 'AverageLatency(us)':
                         if parts[2] != 'NaN':
                             exec_time_rep += ops * float(parts[2])
                         else:
@@ -95,5 +95,5 @@ def generate_report(folder):
 
 
 folder = os.path.join('/', 'Users', 'snair', 'works',
-                      'dislock-experiments', 'results', 'small22')
+                      'dislock-experiments', 'results', 'small22_6')
 generate_report(folder)

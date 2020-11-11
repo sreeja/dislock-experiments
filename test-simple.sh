@@ -17,10 +17,8 @@ do
             export APP=$app
             export GRANULARITY=$granularity
             export LOCKTYPE=$mode
-            make dockdown-cent
-            make dockdown-clust
-            make dockdown-dist
-            make dockrun-$placement &
+            make dockdown
+            make dockrun &
             P_PID=$!
             sleep 60
             chmod 777 latency-$placement.sh

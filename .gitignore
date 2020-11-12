@@ -8,3 +8,5 @@ results/combined/*
 lockenv/*
 
 .vscode/*
+
+zoo-benchmark/*

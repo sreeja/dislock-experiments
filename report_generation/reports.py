@@ -15,10 +15,10 @@ modes = {'auction1': {1: range(1, 10), 2: range(1, 4)},
                       5: range(1, 28), 6: range(1, 19), 7: range(1, 25), 8: range(1, 17)}}
 placements = ['cent', 'clust', 'dist']
 
-# applications = ['auction2']
-# workloads = ['workloadax', 'workloaday', 'workloadaz']
-# granularities = {'auction2': range(3, 4)}
-# modes = {'auction2': {3: range(1, 2)}}
+# applications = ['sample']
+# workloads = ['workloadcx']
+# granularities = {'sample': range(3, 4)}
+# modes = {'sample': {3: range(1, 2)}}
 # placements = ['cent', 'clust', 'dist']
 
 
@@ -31,6 +31,7 @@ def get_result_workload_header(workload):
 
 
 def get_latencies(app, workload, gran, mode, placement):
+    print(app, workload, gran, mode, placement)
     result = []
     error = []
     number_of_ops = 0
@@ -60,7 +61,7 @@ def get_latencies(app, workload, gran, mode, placement):
                             failures += [replica + ': ' + line.strip()]
         number_of_ops += number_of_ops_rep
         exec_time += exec_time_rep
-    if number_of_ops < 5000 or failures:
+    if number_of_ops < 4995: # or failures:
         error += [workload + ' --- ' + lock_config + ' operations ' +
                   str(number_of_ops) + '::: ' + ','.join(failures)]
     else:
@@ -95,5 +96,5 @@ def generate_report(folder):
 
 
 folder = os.path.join('/', 'Users', 'snair', 'works',
-                      'dislock-experiments', 'results', 'small22_6')
+                      'dislock-experiments', 'results', 'local')
 generate_report(folder)

@@ -10,3 +10,5 @@ lockenv/*
 .vscode/*
 
 zoo-benchmark/*
+log.txt
+log2.txt

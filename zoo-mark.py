@@ -32,10 +32,10 @@ bar1 = ax.bar(x_pos - width, resp1, width, yerr=resperr1, align='center', alpha=
 bar2 = ax.bar(x_pos, resp2, width, yerr=resperr2, align='center', alpha=0.5, color='red', edgecolor='black', hatch='', capsize=2)
 bar3 = ax.bar(x_pos + width, resp3, width, yerr=resperr3, align='center', alpha=0.5, color='yellow', edgecolor='black', hatch='xxx', capsize=2)
 bar4 = ax.bar(x_pos + 2*width, resp4, width, yerr=resperr4, align='center', alpha=0.5, color='blue', edgecolor='black', hatch='---', capsize=2)
-ax.set_ylabel('Response time in ms')
+ax.set_ylabel('Response time in s')
 ax.set_xticks(x_pos)
 ax.set_xlabel('Placement of zookeeper servers')
-ax.set_xticklabels(['cent', 'clust', 'dist'])
+ax.set_xticklabels(['centralised (P)', 'clustered (P, C, N)', 'distributed'])
 
 ax.legend((bar0[0], bar1[0], bar2[0], bar3[0], bar4[0]), ('paris', 'tokyo', 'singapore', 'capetown', 'newyork'), bbox_to_anchor=(0., 1.02, 1., .5), loc='lower right', borderaxespad=0., mode="expand", ncol=3)
 

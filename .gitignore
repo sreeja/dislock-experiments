@@ -9,6 +9,9 @@ lockenv/*
 
 .vscode/*
 
-zoo-benchmark/*
+zoo-benchmark/exclusive*/*
+zoo-benchmark/shared*/*
+zoo-benchmark/mutex*/*
 log.txt
 log2.txt
+zoo-logs-plots/*

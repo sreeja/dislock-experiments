@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 fig, ax = plt.subplots(nrows=3, ncols=5, figsize=(20,10), sharex=True, sharey=False)
 
 # Set the title for the figure
-fig.suptitle('Zookeeper benckmarks for different modes of exclusive', fontsize=15)
+fig.suptitle('Zookeeper benckmarks', fontsize=15)
 j=0
 for mode in ['shared', 'exclusive', 'mutex']:
     i = 0

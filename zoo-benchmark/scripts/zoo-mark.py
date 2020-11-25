@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-fig, ax = plt.subplots(nrows=3, ncols=5, figsize=(20,10), sharex=True, sharey=False)
+fig, ax = plt.subplots(nrows=3, ncols=5, figsize=(20,10), sharex=True, sharey=True)
 
 # Set the title for the figure
 fig.suptitle('Zookeeper benckmarks', fontsize=15)
@@ -57,5 +57,5 @@ for mode in ['shared', 'exclusive', 'mutex']:
 
 fig.legend((bar0[0], bar1[0], bar2[0], bar3[0], bar4[0]), ('paris', 'tokyo', 'singapore', 'capetown', 'newyork'), loc = 'upper right', ncol=1)
 
-plt.savefig('zoo-benchmark.png')
+plt.savefig('zoo-benchmark-5.png')
 plt.show()

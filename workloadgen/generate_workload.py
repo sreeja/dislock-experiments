@@ -116,6 +116,6 @@ paramvalues = {'param':['p1']}
 
 generate_tracefiles(operations, paramvalues, workloadpath, appname)
 
+outputpath = os.path.join('/data/snair/locks')
 for each in workload:
-    outputpath = os.path.join(os.getcwd(), 'results', appname, each)
     generate_workload_properties(each, workload[each], replicas, operations, appname, outputpath, workloadpath)

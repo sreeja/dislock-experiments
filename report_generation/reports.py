@@ -1,4 +1,6 @@
 import os
+import numpy as np
+import matplotlib.pyplot as plt
 
 operations = ['[INSERT', '[UPDATE', '[DELETE', '[READ']
 replicas = ['paris', 'tokyo', 'singapore', 'capetown', 'newyork']
@@ -39,11 +41,10 @@ def get_result_workload_header(workload):
     return ('-'*30) + ' ' + workload + ' ' + ('-'*30)
 
 
-def get_latencies(app, workload, gran, mode, placement):
-    print(app, workload, gran, mode, placement)
+def get_latencies(app, workload, lock_config):
     result = []
     error = []
-    lock_config = str(gran)+'-'+str(mode)+'-'+str(placement)
+    numbers = []
     for run in range(1, 6):
         number_of_ops = 0
         exec_time = 0
@@ -80,24 +81,58 @@ def get_latencies(app, workload, gran, mode, placement):
             latency = exec_time / number_of_ops / 1000.0
             result += ['lock config ' + lock_config + ' --- ' + 'run ' + str(run) + ' operations ' + str(
                 number_of_ops) + ' --- ' + 'exec time ' + str(exec_time / 1000.0) + ' --- ' + 'average latency(ms) ' + str(latency)]
+            numbers += [latency]
     result += ['-'*40]
-    return result, error
+    return result, error, numbers
+
+
+def generate_graph(numbers_graph):
+    width = 0.1
+    for app in numbers_graph:
+        # rows = math.ceil(len(numbers_graph[app])/2)
+        fig, ax = plt.subplots(nrows=len(numbers_graph[app]), figsize=(10,10), sharex=True, sharey=False)
+        fig.suptitle(app, fontsize=15)
+        i = 0
+        for wl in numbers_graph[app]:
+            # each subplot
+            x_pos = np.arange(len(numbers_graph[app][wl]))
+            res1 = [np.mean(np.array(numbers_graph[app][wl][config])) for config in numbers_graph[app][wl]]
+            err1 = [np.std(np.array(numbers_graph[app][wl][config])) for config in numbers_graph[app][wl]]
+            bar1 = ax[i].bar(x_pos, res1, width, yerr=err1, align='center', alpha=0.5, color='white', edgecolor='black', hatch='xxx', capsize=2)
+
+            ax[i].set_xlabel(wl)
+            ax[i].set_xticks(x_pos)
+            ax[i].set_xticklabels([k for k in numbers_graph[app][wl]])
+            ax[i].yaxis.grid(True)
+            i += 1
+        plt.savefig(app+'.png')
+        plt.savefig(app+'.eps', format='eps')
+        plt.show()
 
 
 def generate_report(folder):
     result_string = []
     error_string = []
+    numbers_graph = {}
     for app in applications:
         result_string += [get_result_app_header(app)]
+        numbers_graph[app] = {}
         for workload in workloads:
+            numbers_graph[app][workload] = {}
             result_string += [get_result_workload_header(workload)]
             for gran in granularities[app]:
+                # numbers_graph[app][workload][gran] = {}
                 for mode in modes[app][gran]:
+                    # numbers_graph[app][workload][gran][mode] = {}
                     for placement in placements[app][gran]:
-                        result, error = get_latencies(
-                            app, workload, gran, mode, placement)
+                        print(app, workload, gran, mode, placement)
+                        lock_config = str(gran)+'-'+str(mode)+'-'+str(placement)
+                        result, error, number = get_latencies(
+                            app, workload, lock_config)
                         result_string += result
                         error_string += error
+                        # numbers_graph[app][workload][gran][mode][placement] = number
+                        numbers_graph[app][workload][lock_config] = number
         result_file = os.path.join(folder, app, 'report.txt')
         with open(result_file, 'w') as rf:
             for r in result_string:
@@ -106,6 +141,8 @@ def generate_report(folder):
         with open(error_file, 'w') as ef:
             for e in error_string:
                 ef.write(e + '\n')
+
+    generate_graph(numbers_graph)
 
 
 # folder = os.path.join('/', 'Users', 'snair', 'works',

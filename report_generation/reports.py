@@ -24,17 +24,11 @@ replicas = ['paris', 'tokyo', 'singapore', 'capetown', 'newyork']
 # modes = {'sample1': {1: range(1, 2)}}
 # placements = ['cent']#, 'clust', 'dist']
 
-applications = ['sample']
-workloads = ['workloadbx', 'workloadby', 'workloadbz']
-granularities = {'sample': range(4, 5)}
-modes = {'sample': {1: range(1, 28), 2: range(1, 10), 3: range(1, 10), 4: range(1, 5)}}
-placements = ['cent', 'clust', 'dist']
-
-# applications = ['sample']
-# workloads = ['workloadcx']
-# granularities = {'sample': range(3, 4)}
-# modes = {'sample': {3: range(1, 2)}}
-# placements = ['cent', 'clust', 'dist']
+applications = ['sample2']
+workloads = ['workloadeqeq', 'workloadeqhot', 'workloadhoteq', 'workloadhothot']
+granularities = {'sample2': range(1, 2)}
+modes = {'sample2': {1: range(1, 4)}}
+placements = {'sample2': {1: range(1, 4)}}
 
 
 def get_result_app_header(app):
@@ -49,7 +43,7 @@ def get_latencies(app, workload, gran, mode, placement):
     print(app, workload, gran, mode, placement)
     result = []
     error = []
-    lock_config = str(gran)+'-'+str(mode)+'-'+placement
+    lock_config = str(gran)+'-'+str(mode)+'-'+str(placement)
     for run in range(1, 6):
         number_of_ops = 0
         exec_time = 0
@@ -57,10 +51,10 @@ def get_latencies(app, workload, gran, mode, placement):
         for replica in replicas:
             number_of_ops_rep = 0
             exec_time_rep = 0
-            # file_name = os.path.join(folder, 'wlogs', app,
-                                    # workload, lock_config, str(run), replica+'.txt')
-            file_name = os.path.join(folder, str(run), 'wlogs', app,
-                                    workload, lock_config, replica+'.txt')
+            file_name = os.path.join(folder, app,
+                                    workload, lock_config, str(run), replica+'.txt')
+            # file_name = os.path.join(folder, str(run), 'wlogs', app,
+                                    # workload, lock_config, replica+'.txt')
             with open(file_name) as f:
                 for line in f.readlines():
                     # print(line)
@@ -79,7 +73,7 @@ def get_latencies(app, workload, gran, mode, placement):
                                 failures += [replica + ': ' + line.strip()]
             number_of_ops += number_of_ops_rep
             exec_time += exec_time_rep
-        if number_of_ops < 4995: # or failures:
+        if number_of_ops < 995 or failures:
             error += [workload + ' --- ' + lock_config + ' operations ' +
                     str(number_of_ops) + '::: ' + ','.join(failures)]
         else:
@@ -99,21 +93,23 @@ def generate_report(folder):
             result_string += [get_result_workload_header(workload)]
             for gran in granularities[app]:
                 for mode in modes[app][gran]:
-                    for placement in placements:
+                    for placement in placements[app][gran]:
                         result, error = get_latencies(
                             app, workload, gran, mode, placement)
                         result_string += result
                         error_string += error
-    result_file = os.path.join(folder, 'report.txt')
-    with open(result_file, 'w') as rf:
-        for r in result_string:
-            rf.write(r + '\n')
-    error_file = os.path.join(folder, 'error.txt')
-    with open(error_file, 'w') as ef:
-        for e in error_string:
-            ef.write(e + '\n')
+        result_file = os.path.join(folder, app, 'report.txt')
+        with open(result_file, 'w') as rf:
+            for r in result_string:
+                rf.write(r + '\n')
+        error_file = os.path.join(folder, app, 'error.txt')
+        with open(error_file, 'w') as ef:
+            for e in error_string:
+                ef.write(e + '\n')
 
 
+# folder = os.path.join('/', 'Users', 'snair', 'works',
+#                       'dislock-experiments', 'results', 'new', 'small23_1', 'locks')
 folder = os.path.join('/', 'Users', 'snair', 'works',
-                      'dislock-experiments', 'results', 'new', 'small22_1', 'locks')
+                      'dislock-experiments', 'cluster_results')
 generate_report(folder)

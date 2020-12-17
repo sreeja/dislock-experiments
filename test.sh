@@ -22,6 +22,7 @@ do
             export APP=$app
             export GRANULARITY=$granularity
             export LOCKTYPE=$mode
+            export PLACEMENT=$placement
             make dockdown
             make dockrun &
             P_PID=$!

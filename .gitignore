@@ -1,6 +1,7 @@
 results/small*/*
 results/*
 results/combined/*
+cluster_results/*
 
 .DS_Store
 

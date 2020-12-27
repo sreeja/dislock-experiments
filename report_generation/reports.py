@@ -1,4 +1,5 @@
 import os
+import math
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -26,11 +27,29 @@ replicas = ['paris', 'tokyo', 'singapore', 'capetown', 'newyork']
 # modes = {'sample1': {1: range(1, 2)}}
 # placements = ['cent']#, 'clust', 'dist']
 
-applications = ['sample2']
-workloads = ['workloadeqeq', 'workloadeqhot', 'workloadhoteq', 'workloadhothot']
-granularities = {'sample2': range(1, 2)}
-modes = {'sample2': {1: range(1, 4)}}
-placements = {'sample2': {1: range(1, 4)}}
+# applications = ['sample2']
+# workloads = {'sample2':['workloadeqeq', 'workloadeqhot', 'workloadhoteq', 'workloadhothot']}
+# # workloads = {'sample2':['workloadeqeq', 'workloadeqhot', 'workloadeqclust', 'workloadhoteq', 'workloadhothot', 'workloadhotclust']}
+# granularities = {'sample2': range(1, 2)}
+# modes = {'sample2': {1: range(1, 4)}}
+# placements = {'sample2': {1: range(1, 4)}}
+
+
+# applications = ['sample2', 'sample3']
+# workloads = {'sample2':['workloadeqeq', 'workloadeqhot', 'workloadeqclust', 'workloadhoteq', 'workloadhothot', 'workloadhotclust'],
+#                 'sample3' : ['workloadeqeq', 'workloadeqhot', 'workloadeqclust', 'workloadabceq', 'workloadabchot', 'workloadabcclust', 'workloadbaceq', 'workloadbachot', 'workloadbacclust', 'workloadmoreaeq', 'workloadmoreahot', 'workloadmoreaclust', 'workloadlessaeq', 'workloadlessahot', 'workloadlessaclust']}
+# granularities = {'sample2': range(1, 2), 'sample3': range(1, 3)}
+# modes = {'sample2': {1: range(1, 4)}, 'sample3':{1: range(1, 10), 2:range(1,4)}}
+# placements = {'sample2': {1: range(1, 4)}, 'sample3':{1: range(1, 10), 2:range(1,4)}}
+
+
+applications = ['sample3']
+workloads = {'sample2':['workloadeqeq', 'workloadeqhot', 'workloadeqclust', 'workloadhoteq', 'workloadhothot', 'workloadhotclust'],
+                'sample3' : ['workloadeqeq', 'workloadeqhot', 'workloadeqclust', 'workloadabceq', 'workloadabchot', 'workloadabcclust', 'workloadbaceq', 'workloadbachot', 'workloadbacclust', 'workloadmoreaeq', 'workloadmoreahot', 'workloadmoreaclust', 'workloadlessaeq', 'workloadlessahot', 'workloadlessaclust']}
+granularities = {'sample2': range(1, 2), 'sample3': range(2, 3)}
+modes = {'sample2': {1: range(1, 4)}, 'sample3':{1: range(1, 10), 2:range(1,4)}}
+placements = {'sample2': {1: range(1, 4)}, 'sample3':{1: range(1, 10), 2:range(1,4)}}
+
 
 
 def get_result_app_header(app):
@@ -87,24 +106,33 @@ def get_latencies(app, workload, lock_config):
 
 
 def generate_graph(numbers_graph):
+    # TODO: all replica components as a stacked bar plot
     width = 0.1
     for app in numbers_graph:
-        # rows = math.ceil(len(numbers_graph[app])/2)
-        fig, ax = plt.subplots(nrows=len(numbers_graph[app]), figsize=(10,10), sharex=True, sharey=False)
+        rows = math.ceil(len(numbers_graph[app])/2)
+        # print(rows)
+        fig, ax = plt.subplots(nrows=rows, ncols=2, figsize=(10,10), sharex=True, sharey=True)
+        # print(ax)
         fig.suptitle(app, fontsize=15)
         i = 0
+        j = 0
         for wl in numbers_graph[app]:
             # each subplot
+            print(i, j)
             x_pos = np.arange(len(numbers_graph[app][wl]))
             res1 = [np.mean(np.array(numbers_graph[app][wl][config])) for config in numbers_graph[app][wl]]
             err1 = [np.std(np.array(numbers_graph[app][wl][config])) for config in numbers_graph[app][wl]]
-            bar1 = ax[i].bar(x_pos, res1, width, yerr=err1, align='center', alpha=0.5, color='white', edgecolor='black', hatch='xxx', capsize=2)
+            bar1 = ax[i][j].bar(x_pos, res1, width, yerr=err1, align='center', alpha=0.5, color='white', edgecolor='black', hatch='xxx', capsize=2)
 
-            ax[i].set_xlabel(wl)
-            ax[i].set_xticks(x_pos)
-            ax[i].set_xticklabels([k for k in numbers_graph[app][wl]])
-            ax[i].yaxis.grid(True)
-            i += 1
+            ax[i][j].set_xlabel(wl)
+            ax[i][j].set_xticks(x_pos)
+            ax[i][j].set_xticklabels([k for k in numbers_graph[app][wl]])
+            ax[i][j].yaxis.grid(True)
+            if (i < rows-1):
+                i += 1
+            else:
+                j += 1
+                i = 0
         plt.savefig(app+'.png')
         plt.savefig(app+'.eps', format='eps')
         plt.show()
@@ -117,7 +145,7 @@ def generate_report(folder):
     for app in applications:
         result_string += [get_result_app_header(app)]
         numbers_graph[app] = {}
-        for workload in workloads:
+        for workload in workloads[app]:
             numbers_graph[app][workload] = {}
             result_string += [get_result_workload_header(workload)]
             for gran in granularities[app]:
@@ -142,7 +170,7 @@ def generate_report(folder):
             for e in error_string:
                 ef.write(e + '\n')
 
-    generate_graph(numbers_graph)
+    # generate_graph(numbers_graph)
 
 
 # folder = os.path.join('/', 'Users', 'snair', 'works',

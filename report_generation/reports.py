@@ -43,7 +43,7 @@ replicas = ['paris', 'tokyo', 'singapore', 'capetown', 'newyork']
 # placements = {'sample2': {1: range(1, 4)}, 'sample3':{1: range(1, 10), 2:range(1,4)}}
 
 
-applications = ['sample3']
+applications = ['sample2']
 workloads = {'sample2':['workloadeqeq', 'workloadeqhot', 'workloadeqclust', 'workloadhoteq', 'workloadhothot', 'workloadhotclust'],
                 'sample3' : ['workloadeqeq', 'workloadeqhot', 'workloadeqclust', 'workloadabceq', 'workloadabchot', 'workloadabcclust', 'workloadbaceq', 'workloadbachot', 'workloadbacclust', 'workloadmoreaeq', 'workloadmoreahot', 'workloadmoreaclust', 'workloadlessaeq', 'workloadlessahot', 'workloadlessaclust']}
 granularities = {'sample2': range(1, 2), 'sample3': range(2, 3)}
@@ -111,9 +111,9 @@ def generate_graph(numbers_graph):
     for app in numbers_graph:
         rows = math.ceil(len(numbers_graph[app])/2)
         # print(rows)
-        fig, ax = plt.subplots(nrows=rows, ncols=2, figsize=(10,10), sharex=True, sharey=True)
+        fig, ax = plt.subplots(nrows=rows, ncols=2, figsize=(8,10), sharex=True, sharey=True)
         # print(ax)
-        fig.suptitle(app, fontsize=15)
+        # fig.suptitle(app, fontsize=15)
         i = 0
         j = 0
         for wl in numbers_graph[app]:
@@ -125,8 +125,9 @@ def generate_graph(numbers_graph):
             bar1 = ax[i][j].bar(x_pos, res1, width, yerr=err1, align='center', alpha=0.5, color='white', edgecolor='black', hatch='xxx', capsize=2)
 
             ax[i][j].set_xlabel(wl)
+            ax[i][j].xaxis.set_label_position('top')
             ax[i][j].set_xticks(x_pos)
-            ax[i][j].set_xticklabels([k for k in numbers_graph[app][wl]])
+            ax[i][j].set_xticklabels([k for k in numbers_graph[app][wl]], rotation='vertical')
             ax[i][j].yaxis.grid(True)
             if (i < rows-1):
                 i += 1
@@ -170,7 +171,7 @@ def generate_report(folder):
             for e in error_string:
                 ef.write(e + '\n')
 
-    # generate_graph(numbers_graph)
+    generate_graph(numbers_graph)
 
 
 # folder = os.path.join('/', 'Users', 'snair', 'works',

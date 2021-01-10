@@ -6,8 +6,8 @@ import matplotlib.pyplot as plt
 def get_data(folder, wl, gran, mode, place, runs, replicas):
     configs = {}
     for g in gran:
-        for m in mode:
-            for p in place:
+        for m in mode[g]:
+            for p in place[g]:
                 config = '-'.join([str(g), str(m), str(p)])
                 configs[config] = {}
                 for r in replicas:
@@ -45,11 +45,15 @@ def generate_raw_plots(configs, replicas, name):
 
 
 folder = os.path.join('/', 'Users', 'snair', 'works',
-                      'dislock-experiments', 'cluster_results', 'new', 'sample2')
-workloads = ['workloadeqeq', 'workloadeqhot', 'workloadeqclust', 'workloadhoteq','workloadhothot','workloadhotclust']
+                      'dislock-experiments', 'cluster_results', 'new', 'sample3')
+# workloads = ['workloadeqeq', 'workloadeqhot', 'workloadeqclust', 'workloadhoteq','workloadhothot','workloadhotclust']
+workloads = ['workloadeqeq', 'workloadeqhot', 'workloadeqclust', 'workloadabceq', 'workloadabchot', 'workloadabcclust', 'workloadbaceq', 'workloadbachot', 'workloadbacclust', 'workloadmoreaeq', 'workloadmoreahot', 'workloadmoreaclust', 'workloadlessaeq', 'workloadlessahot', 'workloadlessaclust']
 gran=[1]
-mode = [1,2,3]
-place = [1,2,3]
+# gran=[1,2]
+# mode = {1:[1,2,3]}
+# place = {1:[1,2,3]}
+mode = {1:[1]} #,2,3,4,5,6,7,8,9], 2:[1,2,3]}
+place = {1:[1,2,3,4,5,6,7,8,9], 2:[1,2,3]}
 runs = [1,2,3,4,5]
 replicas = ['paris','tokyo','singapore','capetown','newyork']
 for wl in workloads:

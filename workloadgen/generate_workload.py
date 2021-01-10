@@ -107,35 +107,38 @@ def generate_tracefiles(operations, paramvalues, workloadpath, appname):
 replicas = ['paris', 'tokyo', 'singapore', 'capetown', 'newyork']
 workloadpath = os.path.join(os.getcwd(), 'workloads')
 
-# operations = {'operationa':'param', 'operationb':'param'}
-# workload = {'workloadeqeq':[[100,100,100,100,100],[100,100,100,100,100]],
-#             'workloadeqhot':[[500,0,0,0,0],[500,0,0,0,0]],
-#             'workloadeqclust':[[167,167,166,0,0],[500,0,0,0,0]],
-#             'workloadhoteq':[[200,200,200,200,200],[0,0,0,0,0]],
-#             'workloadhothot':[[1000,0,0,0,0],[0,0,0,0,0]],
-#             'workloadhotclust':[[334,333,333,0,0],[0,0,0,0,0]]}
-# appname = 'sample2'
-# paramvalues = {'param':['p1']}
-
-
-operations = {'operationa':'param', 'operationb':'param', 'operationc':'param'}
-workload = {'workloadeqeq':[[75,75,75,75,75],[75,75,75,75,75], [75,75,75,75,75]],
-            'workloadeqhot':[[375,0,0,0,0],[375,0,0,0,0],[375,0,0,0,0]],
-            'workloadeqclust':[[125,125,125,0,0],[125,125,125,0,0],[125,125,125,0,0]],
-            'workloadabceq':[[200,200,200,200,200],[20,20,20,20,20],[5,5,5,5,5]],
-            'workloadabchot':[[1000,0,0,0,0],[100,0,0,0,0],[25,0,0,0,0]],
-            'workloadabcclust':[[334,333,333,0,0],[34,33,33,0,0],[9,8,8,0,0]],
-            'workloadbaceq':[[20,20,20,20,20],[200,200,200,200,200],[5,5,5,5,5]],
-            'workloadbachot':[[100,0,0,0,0],[1000,0,0,0,0],[25,0,0,0,0]],
-            'workloadbacclust':[[34,33,33,0,0],[334,333,333,0,0],[9,8,8,0,0]],
-            'workloadmoreaeq':[[125,125,125,125,125],[50,50,50,50,50],[50,50,50,50,50]],
-            'workloadmoreahot':[[625,0,0,0,0],[250,0,0,0,0],[250,0,0,0,0]],
-            'workloadmoreaclust':[[209,208,208,0,0],[84,83,83,0,0],[84,83,83,0,0]],
-            'workloadlessaeq':[[25,25,25,25,25],[100,100,100,100,100],[100,100,100,100,100]],
-            'workloadlessahot':[[125,0,0,0,0],[500,0,0,0,0],[500,0,0,0,0]],
-            'workloadlessaclust':[[42,42,41,0,0],[167,167,166,0,0],[167,167,166,0,0]]}
-appname = 'sample3'
+operations = {'operationa':'param', 'operationb':'param'}
+workload = {'workloadeqeq':[[100,100,100,100,100],[100,100,100,100,100]],
+            'workloadeqhot':[[500,0,0,0,0],[500,0,0,0,0]],
+            'workloadeqclust':[[167,167,166,0,0],[167,166,166,0,0]],
+            'workloadhoteq':[[200,200,200,200,200],[0,0,0,0,0]],
+            'workloadhothot':[[1000,0,0,0,0],[0,0,0,0,0]],
+            'workloadhotclust':[[334,333,333,0,0],[0,0,0,0,0]],
+            'workloadG':[[500,0,0,0,0],[0,0,0,250,250]],
+            'workloadF':[[500,0,0,0,0],[100,100,100,100,100]],
+}
+appname = 'sample2'
 paramvalues = {'param':['p1']}
+
+
+# operations = {'operationa':'param', 'operationb':'param', 'operationc':'param'}
+# workload = {'workloadeqeq':[[75,75,75,75,75],[75,75,75,75,75], [75,75,75,75,75]],
+#             'workloadeqhot':[[375,0,0,0,0],[375,0,0,0,0],[375,0,0,0,0]],
+#             'workloadeqclust':[[125,125,125,0,0],[125,125,125,0,0],[125,125,125,0,0]],
+#             'workloadabceq':[[200,200,200,200,200],[20,20,20,20,20],[5,5,5,5,5]],
+#             'workloadabchot':[[1000,0,0,0,0],[100,0,0,0,0],[25,0,0,0,0]],
+#             'workloadabcclust':[[334,333,333,0,0],[34,33,33,0,0],[9,8,8,0,0]],
+#             'workloadbaceq':[[20,20,20,20,20],[200,200,200,200,200],[5,5,5,5,5]],
+#             'workloadbachot':[[100,0,0,0,0],[1000,0,0,0,0],[25,0,0,0,0]],
+#             'workloadbacclust':[[34,33,33,0,0],[334,333,333,0,0],[9,8,8,0,0]],
+#             'workloadmoreaeq':[[125,125,125,125,125],[50,50,50,50,50],[50,50,50,50,50]],
+#             'workloadmoreahot':[[625,0,0,0,0],[250,0,0,0,0],[250,0,0,0,0]],
+#             'workloadmoreaclust':[[209,208,208,0,0],[84,83,83,0,0],[84,83,83,0,0]],
+#             'workloadlessaeq':[[25,25,25,25,25],[100,100,100,100,100],[100,100,100,100,100]],
+#             'workloadlessahot':[[125,0,0,0,0],[500,0,0,0,0],[500,0,0,0,0]],
+#             'workloadlessaclust':[[42,42,41,0,0],[167,167,166,0,0],[167,167,166,0,0]]}
+# appname = 'sample3'
+# paramvalues = {'param':['p1']}
 
 generate_tracefiles(operations, paramvalues, workloadpath, appname)
 

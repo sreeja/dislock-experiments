@@ -19,3 +19,7 @@ zoo-logs-plots/*
 
 
 workloadgen/workloads/*
+predictions.pages
+
+*.png
+*.eps

@@ -59,8 +59,8 @@ def generate_raw_plots(configs, replicas, name1, name2):
 
     plt.xticks(rotation=90)
     plt.grid(axis='y')
-    plt.savefig(name2+'/'+name1+'.png')
-    plt.savefig(name2+'/'+name1+'.eps', format='eps')
+    plt.savefig(name2+'/raw'+name1+'.png')
+    plt.savefig(name2+'/raw'+name1+'.eps', format='eps')
     plt.show()
 
 
@@ -77,8 +77,8 @@ def generate_individual_raw_plots(configs, replicas, name1, name2):
 
     plt.xticks(rotation=90)
     plt.grid(axis='y')
-    plt.savefig(name2+'/individual'+name1+'.png')
-    plt.savefig(name2+'/individual'+name1+'.eps', format='eps')
+    plt.savefig(name2+'/individualraw'+name1+'.png')
+    plt.savefig(name2+'/individualraw'+name1+'.eps', format='eps')
     plt.show()
 
 
@@ -102,8 +102,8 @@ def generate_box_plots(configs, replicas, name1, name2, percentile=None):
 
     plt.xticks(range(1,len(data)+1), data.keys(), rotation=90)
     plt.grid(axis='y')
-    plt.savefig(name2+'/'+name1+'.png')
-    plt.savefig(name2+'/'+name1+'.eps', format='eps')
+    plt.savefig(name2+'/box'+str(percentile)+name1+'.png')
+    plt.savefig(name2+'/box'+str(percentile)+name1+'.eps', format='eps')
     plt.show()
 
 
@@ -128,8 +128,8 @@ def generate_individual_box_plots(configs, replicas, name1, name2, percentile=No
 
     plt.xticks(range(1,len(data)+1), data.keys(), rotation=90)
     plt.grid(axis='y')
-    plt.savefig(name2+'/individual'+name1+'.png')
-    plt.savefig(name2+'/individual'+name1+'.eps', format='eps')
+    plt.savefig(name2+'/individualbox'+str(percentile)+name1+'.png')
+    plt.savefig(name2+'/individualbox'+str(percentile)+name1+'.eps', format='eps')
     plt.show()
 
 
@@ -148,8 +148,8 @@ def generate_violin_plot(configs, replicas, name1, name2):
 
     plt.xticks(range(1,len(data)+1), data.keys(), rotation=90)
     plt.grid(axis='y')
-    plt.savefig(name2+'/'+name1+'.png')
-    plt.savefig(name2+'/'+name1+'.eps', format='eps')
+    plt.savefig(name2+'/violin'+name1+'.png')
+    plt.savefig(name2+'/violin'+name1+'.eps', format='eps')
     plt.show()
 
 
@@ -172,6 +172,6 @@ def generate_individual_violin_plot(configs, replicas, name1, name2):
 
     plt.xticks(range(1,len(data)+1), data.keys(), rotation=90)
     plt.grid(axis='y')
-    plt.savefig(name2+'/'+name1+'.png')
-    plt.savefig(name2+'/'+name1+'.eps', format='eps')
+    plt.savefig(name2+'/individualviolin'+name1+'.png')
+    plt.savefig(name2+'/individualviolin'+name1+'.eps', format='eps')
     plt.show()

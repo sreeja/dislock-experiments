@@ -3,14 +3,26 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-fig, ax = plt.subplots(nrows=3, ncols=5, figsize=(20,10), sharex=True, sharey=True)
+def autolabel(rects, j, i):
+    """
+    Attach a text label above each bar displaying its height
+    """
+    for rect in rects:
+        height = rect.get_height()
+        ax[j,i].text(rect.get_x() + rect.get_width()/2., 1.05*height,
+                '%f' % height,
+                ha='center', va='bottom', rotation='vertical')
+
+# fig, ax = plt.subplots(nrows=3, ncols=5, figsize=(11.69,8.27), sharex=True, sharey=True)
+fig, ax = plt.subplots(nrows=3, ncols=3, figsize=(9,7), sharex=True, sharey=True)
 
 # Set the title for the figure
-fig.suptitle('Zookeeper benckmarks', fontsize=15)
+# fig.suptitle('Zookeeper benckmarks', fontsize=15)
 j=0
 for mode in ['shared', 'exclusive', 'mutex']:
     i = 0
-    for exp in ['', '-concurrent', '-concurrent-diff', '-concurrent-nowait', '-concurrent-diff-nowait']:
+    # for exp in ['', '-concurrent', '-concurrent-diff', '-concurrent-nowait', '-concurrent-diff-nowait']:
+    for exp in ['', '-concurrent-nowait', '-concurrent-diff-nowait']:
         responses = {}
         for placement in ['cent', 'clust', 'dist']:
             responses[placement] = {}
@@ -42,6 +54,11 @@ for mode in ['shared', 'exclusive', 'mutex']:
         bar2 = ax[j,i].bar(x_pos, resp2, width, yerr=resperr2, align='center', alpha=0.5, color='red', edgecolor='black', hatch='', capsize=2)
         bar3 = ax[j,i].bar(x_pos + width, resp3, width, yerr=resperr3, align='center', alpha=0.5, color='yellow', edgecolor='black', hatch='xxx', capsize=2)
         bar4 = ax[j,i].bar(x_pos + 2*width, resp4, width, yerr=resperr4, align='center', alpha=0.5, color='blue', edgecolor='black', hatch='---', capsize=2)
+        autolabel(bar0, j, i)
+        autolabel(bar1, j, i)
+        autolabel(bar2, j, i)
+        autolabel(bar3, j, i)
+        autolabel(bar4, j, i)
         ax[j,i].set_xlabel(mode+exp)
         ax[j,i].set_xticks(x_pos)
         # ax[i].set_xlabel('Placement of zookeeper servers')
@@ -55,7 +72,8 @@ for mode in ['shared', 'exclusive', 'mutex']:
         i += 1
     j += 1
 
-fig.legend((bar0[0], bar1[0], bar2[0], bar3[0], bar4[0]), ('paris', 'tokyo', 'singapore', 'capetown', 'newyork'), loc = 'upper right', ncol=1)
+fig.legend((bar0[0], bar1[0], bar2[0], bar3[0], bar4[0]), ('paris', 'tokyo', 'singapore', 'capetown', 'newyork'), loc = 'upper center', ncol=5)
 
-plt.savefig('zoo-benchmark-5.png')
+plt.savefig('zoo-benchmark-3-new.png')
+plt.savefig('zoo-benchmark-3-new.eps', format='eps')
 plt.show()

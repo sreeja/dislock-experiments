@@ -24,3 +24,4 @@ predictions.pages
 *.png
 *.eps
 *.pyc
+.ipynb_checkpoints

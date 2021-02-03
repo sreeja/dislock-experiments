@@ -104,21 +104,35 @@ def generate_tracefiles(operations, paramvalues, workloadpath, appname):
             f.writelines('\n'.join(result[i]))
 
 
-replicas = ['paris', 'tokyo', 'singapore', 'capetown', 'newyork']
-workloadpath = os.path.join(os.getcwd(), 'workloads')
+replicas = ['houston', 'paris', 'singapore']
+workloadpath = os.path.join(os.getcwd(), 'workloads', 'go')
 
 operations = {'operationa':'param', 'operationb':'param'}
-workload = {'workloadeqeq':[[100,100,100,100,100],[100,100,100,100,100]],
-            'workloadeqhot':[[500,0,0,0,0],[500,0,0,0,0]],
-            'workloadeqclust':[[167,167,166,0,0],[167,166,166,0,0]],
-            'workloadhoteq':[[200,200,200,200,200],[0,0,0,0,0]],
-            'workloadhothot':[[1000,0,0,0,0],[0,0,0,0,0]],
-            'workloadhotclust':[[334,333,333,0,0],[0,0,0,0,0]],
-            'workloadG':[[500,0,0,0,0],[0,0,0,250,250]],
-            'workloadF':[[500,0,0,0,0],[100,100,100,100,100]],
+workload = {'workloadeqeq':[[167,167,166],[167,167,166]],
+            'workloadeqhot':[[500,0,0],[500,0,0]],
+            'workloadeqclust':[[250,250,0],[250,250,0]],
+            'workloadhoteq':[[334,333,333],[0,0,0]],
+            'workloadhothot':[[1000,0,0],[0,0,0]],
+            'workloadhotclust':[[500, 500,0],[0,0,0]],
+            'workloadG':[[500,0,0],[0,250,250]],
+            'workloadF':[[500,0,0],[167,167,166]],
 }
 appname = 'sample2'
 paramvalues = {'param':['p1']}
+
+
+# operations = {'operationa':'param', 'operationb':'param'}
+# workload = {'workloadeqeq':[[100,100,100,100,100],[100,100,100,100,100]],
+#             'workloadeqhot':[[500,0,0,0,0],[500,0,0,0,0]],
+#             'workloadeqclust':[[167,167,166,0,0],[167,166,166,0,0]],
+#             'workloadhoteq':[[200,200,200,200,200],[0,0,0,0,0]],
+#             'workloadhothot':[[1000,0,0,0,0],[0,0,0,0,0]],
+#             'workloadhotclust':[[334,333,333,0,0],[0,0,0,0,0]],
+#             'workloadG':[[500,0,0,0,0],[0,0,0,250,250]],
+#             'workloadF':[[500,0,0,0,0],[100,100,100,100,100]],
+# }
+# appname = 'sample2'
+# paramvalues = {'param':['p1']}
 
 
 # operations = {'operationa':'param', 'operationb':'param', 'operationc':'param'}

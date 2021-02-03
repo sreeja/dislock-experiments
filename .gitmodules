@@ -7,3 +7,6 @@
 [submodule "YCSB"]
 	path = YCSB
 	url = git@github.com:sreeja/YCSB.git
+[submodule "dislocksim-go"]
+	path = dislocksim-go
+	url = https://github.com/sreeja/dislocksim-go

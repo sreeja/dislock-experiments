@@ -25,3 +25,5 @@ predictions.pages
 *.eps
 *.pyc
 .ipynb_checkpoints
+
+goresults/*

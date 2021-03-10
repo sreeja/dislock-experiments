@@ -104,18 +104,18 @@ def generate_tracefiles(operations, paramvalues, workloadpath, appname):
             f.writelines('\n'.join(result[i]))
 
 
-replicas = ['houston', 'paris', 'singapore']
+replicas = ['houston', 'paris', 'singapore']    # don't change this
 workloadpath = os.path.join(os.getcwd(), 'workloads', 'go')
 
 operations = {'operationa':'param', 'operationb':'param'}
 workload = {'workloadeqeq':[[167,167,166],[167,167,166]],
-            'workloadeqhot':[[500,0,0],[500,0,0]],
+            'workloadeqhot':[[0,500,0],[0,500,0]],
             'workloadeqclust':[[250,250,0],[250,250,0]],
-            'workloadhoteq':[[334,333,333],[0,0,0]],
-            'workloadhothot':[[1000,0,0],[0,0,0]],
+            'workloadhoteq':[[333,334,333],[0,0,0]],
+            'workloadhothot':[[0,1000,0],[0,0,0]],
             'workloadhotclust':[[500, 500,0],[0,0,0]],
-            'workloadG':[[500,0,0],[0,250,250]],
-            'workloadF':[[500,0,0],[167,167,166]],
+            'workloadG':[[0,500,0],[250,0,250]],
+            'workloadF':[[0,500,0],[167,167,166]],
 }
 appname = 'sample2'
 paramvalues = {'param':['p1']}
@@ -156,6 +156,6 @@ paramvalues = {'param':['p1']}
 
 generate_tracefiles(operations, paramvalues, workloadpath, appname)
 
-outputpath = os.path.join('/data/snair/locks')
+outputpath = os.path.join('/data/snair/golocks')
 for each in workload:
     generate_workload_properties(each, workload[each], replicas, operations, appname, outputpath, workloadpath)

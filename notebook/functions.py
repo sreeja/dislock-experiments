@@ -50,7 +50,7 @@ def get_individual_data(folder, wl, gran, mode, place, runs, replicas):
 def generate_raw_plots(configs, replicas, name1, name2):
     fig, ax = plt.subplots(figsize=(14,8))
     x_pos = np.arange(len(configs)*len(replicas))
-    colors = {'paris':'red','tokyo':'green','singapore':'yellow','capetown':'blue','newyork':'magenta'}
+    colors = {'houston':'blue','paris':'red','tokyo':'green','singapore':'yellow','capetown':'blue','newyork':'magenta'}
     for c in configs:
         for r in configs[c]:
             for val in configs[c][r]:
@@ -67,7 +67,7 @@ def generate_raw_plots(configs, replicas, name1, name2):
 def generate_individual_raw_plots(configs, replicas, name1, name2):
     fig, ax = plt.subplots(figsize=(20,8))
     # x_pos = np.arange(len(configs)*len(replicas))
-    colors = {'paris':'red','tokyo':'green','singapore':'yellow','capetown':'blue','newyork':'magenta'}
+    colors = {'houston':'blue','paris':'red','tokyo':'green','singapore':'yellow','capetown':'blue','newyork':'magenta'}
     for c in configs:
         for r in configs[c]:
             for op in configs[c][r]:

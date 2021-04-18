@@ -1,4 +1,4 @@
-export root=/Users/snair/works/dislock-experiments/results/prediction
+export root=/Users/snair/works/dislock-experiments/goresults/prediction
 # export root=/data/snair/locks
 mkdir -p $root
 > $root/log.txt
@@ -14,9 +14,9 @@ do
 		    cd YCSB
         cd ..
         # for workload in workloadeqeq workloadeqhot workloadeqclust workloadabceq workloadabchot workloadabcclust workloadbaceq workloadbachot workloadbacclust workloadmoreaeq workloadmoreahot workloadmoreaclust workloadlessaeq workloadlessahot workloadlessaclust
-        for workload in workloadeqeq
+        for workload in workloadhothot
         do
-          for run in 1 2 3 4 5
+          for run in 1
           do 
             mkdir $root/raw
             cd dislocksim-go
@@ -27,7 +27,7 @@ do
             make down
             make run &
             P_PID=$!
-            sleep 60
+            sleep 30
             chmod 777 latency.sh
             ./latency.sh
             cd ..

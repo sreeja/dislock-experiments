@@ -75,10 +75,10 @@ def get_custom_properties(replicaindex, appname, timeout=6000):
     content = []
     content += ['#	Custom Properties']
     content += ['url.prefix=http://localhost:600'+str(replicaindex)+'/']
-    content += ['url.trace.read=workloads/'+appname+'/trace_read.txt']
-    content += ['url.trace.insert=workloads/'+appname+'/trace_insert.txt']
-    content += ['url.trace.update=workloads/'+appname+'/trace_update.txt']
-    content += ['url.trace.delete=workloads/'+appname+'/trace_delete.txt']
+    content += ['url.trace.read=workloads/go/'+appname+'/trace_read.txt']
+    content += ['url.trace.insert=workloads/go/'+appname+'/trace_insert.txt']
+    content += ['url.trace.update=workloads/go/'+appname+'/trace_update.txt']
+    content += ['url.trace.delete=workloads/go/'+appname+'/trace_delete.txt']
     content += ['# Header must be separated by space. Other delimiters might occur as header values and hence can not be used.']
     content += ['headers=Accept */* Accept-Language en-US,en;q=0.5 Content-Type application/x-www-form-urlencoded user-agent Mozilla/5.0 Connection close']
     content += ['timeout.con='+str(timeout)]
@@ -107,18 +107,18 @@ def generate_tracefiles(operations, paramvalues, workloadpath, appname):
 replicas = ['houston', 'paris', 'singapore']    # don't change this
 workloadpath = os.path.join(os.getcwd(), 'workloads', 'go')
 
-# operations = {'operationa':'param', 'operationb':'param'}
-# workload = {'workloadeqeq':[[167,167,166],[167,167,166]],
-#             'workloadeqhot':[[0,500,0],[0,500,0]],
-#             'workloadeqclust':[[250,250,0],[250,250,0]],
-#             'workloadhoteq':[[333,334,333],[0,0,0]],
-#             'workloadhothot':[[0,1000,0],[0,0,0]],
-#             'workloadhotclust':[[500, 500,0],[0,0,0]],
-#             'workloadG':[[0,500,0],[250,0,250]],
-#             'workloadF':[[0,500,0],[167,167,166]],
-# }
-# appname = 'sample2'
-# paramvalues = {'param':['p1']}
+operations = {'operationa':'param', 'operationb':'param'}
+workload = {'workloadeqeq':[[167,167,166],[167,167,166]],
+            'workloadeqhot':[[0,500,0],[0,500,0]],
+            'workloadeqclust':[[250,250,0],[250,250,0]],
+            'workloadhoteq':[[333,334,333],[0,0,0]],
+            'workloadhothot':[[0,1000,0],[0,0,0]],
+            'workloadhotclust':[[500, 500,0],[0,0,0]],
+            'workloadG':[[0,500,0],[250,0,250]],
+            'workloadF':[[0,500,0],[167,167,166]],
+}
+appname = 'sample2'
+paramvalues = {'param':['p1']}
 
 
 # operations = {'operationa':'param', 'operationb':'param'}
@@ -135,24 +135,24 @@ workloadpath = os.path.join(os.getcwd(), 'workloads', 'go')
 # paramvalues = {'param':['p1']}
 
 
-operations = {'operationa':'param', 'operationb':'param', 'operationc':'param'}
-workload = {'workloadeqeq':[[111,111,111],[111,111,111], [111,111,111]],
-            'workloadeqhot':[[0,333,0],[0,333,0],[0,333,0]],
-            'workloadeqclust':[[167,167,0],[167,167,0],[167,167,0]],
-            'workloadabceq':[[303,303,303],[25,25,25],[5,5,5]],
-            'workloadabchot':[[0,909,0],[0,75,0],[0,15,0]],
-            'workloadabcclust':[[455,455,0],[37,37,0],[8,8,0]],
-            'workloadbaceq':[[25,25,25],[303,303,303],[5,5,5]],
-            'workloadbachot':[[0,75,0],[0,909,0],[0,15,0]],
-            'workloadbacclust':[[37,37,0],[455,455,0],[8,8,0]],
-            'workloadmoreaeq':[[183,183,183],[75,75,75],[75,75,75]],
-            'workloadmoreahot':[[0,550,0],[0,225,0],[0,225,0]],
-            'workloadmoreaclust':[[275,275,0],[112,112,0],[112,112,0]],
-            'workloadlessaeq':[[33,33,33],[150,150,150],[150,150,150]],
-            'workloadlessahot':[[0,100,0],[0,450,0],[0,450,0]],
-            'workloadlessaclust':[[50,50,0],[225,225,0],[225,225,0]]}
-appname = 'sample3'
-paramvalues = {'param':['p1']}
+# operations = {'operationa':'param', 'operationb':'param', 'operationc':'param'}
+# workload = {'workloadeqeq':[[111,111,111],[111,111,111], [111,111,111]],
+#             'workloadeqhot':[[0,333,0],[0,333,0],[0,333,0]],
+#             'workloadeqclust':[[167,167,0],[167,167,0],[167,167,0]],
+#             'workloadabceq':[[303,303,303],[25,25,25],[5,5,5]],
+#             'workloadabchot':[[0,909,0],[0,75,0],[0,15,0]],
+#             'workloadabcclust':[[455,455,0],[37,37,0],[8,8,0]],
+#             'workloadbaceq':[[25,25,25],[303,303,303],[5,5,5]],
+#             'workloadbachot':[[0,75,0],[0,909,0],[0,15,0]],
+#             'workloadbacclust':[[37,37,0],[455,455,0],[8,8,0]],
+#             'workloadmoreaeq':[[183,183,183],[75,75,75],[75,75,75]],
+#             'workloadmoreahot':[[0,550,0],[0,225,0],[0,225,0]],
+#             'workloadmoreaclust':[[275,275,0],[112,112,0],[112,112,0]],
+#             'workloadlessaeq':[[33,33,33],[150,150,150],[150,150,150]],
+#             'workloadlessahot':[[0,100,0],[0,450,0],[0,450,0]],
+#             'workloadlessaclust':[[50,50,0],[225,225,0],[225,225,0]]}
+# appname = 'sample3'
+# paramvalues = {'param':['p1']}
 
 # operations = {'operationa':'param', 'operationb':'param', 'operationc':'param'}
 # workload = {'workloadeqeq':[[75,75,75,75,75],[75,75,75,75,75], [75,75,75,75,75]],
@@ -175,6 +175,7 @@ paramvalues = {'param':['p1']}
 
 generate_tracefiles(operations, paramvalues, workloadpath, appname)
 
-outputpath = os.path.join('/data/snair/golocks')
+outputpath = os.path.join('/Users/snair/works/dislock-experiments/goresults/prediction')
+# outputpath = os.path.join('/data/snair/golocks')
 for each in workload:
     generate_workload_properties(each, workload[each], replicas, operations, appname, outputpath, workloadpath)
